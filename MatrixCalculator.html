@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Matrix Multiplication</title>
+        <style>
+            input[type=number]{
+                width:100px;
+                height:100px;
+                text-align:center ;
+                font-size: 50px;
+            }
+            #input {
+                display: flex;
+                justify-content: center;
+                /* overflow-x: auto; */
+                /* align-items: center; */ /*  vertical align  */
+            }
+
+            @media  (max-width: 800px) { /* Adjust the width as per your phone breakpoint */
+                #input {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column; /* Change direction to vertical */
+                }
+                input[type=number]{
+                    flex: 1 1 auto;
+                    width:50px;
+                    height:50px;
+                    font-size: 30px;
+                }
+            }
+        </style>
+        <script>
+            function Calculate(){
+                // todo
+                // display result
+                // 
+            }
+            var m1;
+            var m2;
+            document.addEventListener('DOMContentLoaded', function() {
+                m1=document.getElementById("m1");
+                m2=document.getElementById("m2");
+                for(var i=0;i<5;i++){
+                    var r=document.createElement("tr");
+                    for(var j=0;j<5;j++){
+                        var tmp=document.createElement("td");
+                        var field=document.createElement("input");
+                        field.type="number";
+                        field.step=1;
+                        field.value=0;
+                        field.placeholder=0;
+                        field.id="1_"+toString(i)+"_"+toString(j);
+                        r.appendChild(field);
+                    }
+                    m1.appendChild(r);
+                }
+                for(var i=0;i<5;i++){
+                    var r=document.createElement("tr");
+                    for(var j=0;j<5;j++){
+                        var tmp=document.createElement("td");
+                        var field=document.createElement("input");
+                        field.type="number";
+                        field.step=1;
+                        field.value=0;
+                        field.placeholder=0;
+                        field.id="2_"+toString(i)+"_"+toString(j);
+                        r.appendChild(field);
+                    }
+                    m2.appendChild(r);
+                }
+            });
+
+        </script>
+    </head>
+    <body> 
+        <div>
+            <h2>How to Use</h2>
+            <ol>
+                <li>Key in your numbers, programme will take the last non-zero number as the order</li>
+                <li>press multiply</li>
+            </ol>
+            <h2>Notice</h2>
+            <p>This only support up to 5*5 (which is more than sufficent for doing math HW)</p>
+            <p>please dont try to crash the programme... if it crash, reload</p>
+        </div>
+        <div id="input">
+            <div ><table id="m1">
+
+            </table></div>
+            <button onclick="Calculate()">multiply</button>
+            <div ><table id="m2">
+
+            </table></div>
+        </div>
+        <div style="display:block">
+            <table id="res">
+
+            </table>
+        </div>
+        <div style="text-align: right; font-size: small; font-style: italic;">
+            some part of the programme written using chatgpt <br>
+            actually u can use chatgpt to write the whole programme, but not garentee it works...<br>
+            Done by some Thomas<br>
+            hu
+        </div>
+    </body>
+
+</html>
