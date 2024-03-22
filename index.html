@@ -41,37 +41,81 @@
             }
             var m1;
             var m2;
+            var R1=0,C1=0,R2=0,C2=0;//order of matrix
+
+            // maybe write a class for matrix, less repetition more professional
+            
+            function input1(event){
+                var tar=event.target;
+                console.log("Matrix 1" ,R1,C1);
+                R1=tar.dataset.r;
+                C1=tar.dataset.c;
+                for(var i=1;i<=5;i++){
+                    for(var j=1;j<=5;j++){
+                        if(i<=R1 && j<=C1){
+                            console.log
+                            document.getElementById(`1_${i}_${j}`).style.backgroundColor="lightgreen";
+                        }else{
+                            document.getElementById(`1_${i}_${j}`).style.backgroundColor="lightgrey";
+
+                        }
+                    }
+                }
+            }
+            function input2(event){
+                var tar=event.target;
+                R2=tar.dataset.r;
+                C2=tar.dataset.c;
+                console.log("Matrix 2" );
+                for(var i=1;i<=5;i++){
+                    for(var j=1;j<=5;j++){
+                        if(i<=R2 && j<=C2){
+                            document.getElementById(`2_${i}_${j}`).style.backgroundColor="lightgreen";
+                        }else{
+                            document.getElementById(`2_${i}_${j}`).style.backgroundColor="lightgrey";
+
+                        }
+                    }
+                }
+            }
+
             document.addEventListener('DOMContentLoaded', function() {
                 m1=document.getElementById("m1");
                 m2=document.getElementById("m2");
-                for(var i=0;i<5;i++){
+                for(var i=1;i<=5;i++){
                     var r=document.createElement("tr");
-                    for(var j=0;j<5;j++){
+                    for(var j=1;j<=5;j++){
                         var tmp=document.createElement("td");
                         var field=document.createElement("input");
                         field.type="number";
-                        field.step=1;
                         field.value=0;
                         field.placeholder=0;
-                        field.id="1_"+toString(i)+"_"+toString(j);
+                        field.dataset.r=i;
+                        field.dataset.c=j;
+                        field.id=`1_${i}_${j}`;
+                        field.style.backgroundColor="lightgrey";
                         r.appendChild(field);
                     }
                     m1.appendChild(r);
                 }
-                for(var i=0;i<5;i++){
+                for(var i=1;i<=5;i++){
                     var r=document.createElement("tr");
-                    for(var j=0;j<5;j++){
+                    for(var j=1;j<=5;j++){
                         var tmp=document.createElement("td");
                         var field=document.createElement("input");
                         field.type="number";
-                        field.step=1;
                         field.value=0;
                         field.placeholder=0;
-                        field.id="2_"+toString(i)+"_"+toString(j);
+                        field.dataset.r=i;
+                        field.dataset.c=j;
+                        field.id=`2_${i}_${j}`;
+                        field.style.backgroundColor="lightgrey";
                         r.appendChild(field);
                     }
                     m2.appendChild(r);
                 }
+                m1.addEventListener("input",input1);
+                m2.addEventListener("input",input2);
             });
 
         </script>
