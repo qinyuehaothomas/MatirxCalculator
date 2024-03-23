@@ -1,9 +1,15 @@
-
+body{
+    background-color: black;
+    font-family:Courier;
+    color: lightgreen;
+}
 .num{
+    font-family: inherit;
     width:100px;
     height:100px;
     text-align:center ;
-    background-color: lightgray;
+    background-color: grey;
+    color: inherit;
     font-size: 50px;
 }
 #input{
@@ -16,6 +22,10 @@
 #res{
     display: flex;
     justify-content: center;
+}
+
+button{
+    font:inherit;
 }
 
 @media  (max-width: 1200px) { /* Adjust the width as per your phone breakpoint */

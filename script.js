@@ -21,7 +21,6 @@ function constructM(r,c,id){
             field.dataset.c=j;
             field.id=`${id}_${i}_${j}`;
             field.className="num";
-            field.style.backgroundColor="lightgrey";
             row.appendChild(field);
         }
         obj.appendChild(row);
@@ -46,9 +45,11 @@ function Minput(event){
                 tmp.push(obj.value);
                 // obj.className="num_fill";
                 obj.style.backgroundColor="lightgreen";
+                obj.style.color="black";
             }else{
                 // obj.className="num";
-                obj.style.backgroundColor="lightgrey";
+                obj.style.backgroundColor="grey";
+                obj.style.color="lightgreen";
 
             }
         }
