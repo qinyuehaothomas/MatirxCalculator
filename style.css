@@ -1,24 +1,30 @@
 
-input[type=number]{
+.num{
     width:100px;
     height:100px;
     text-align:center ;
+    background-color: lightgray;
     font-size: 50px;
 }
-#input {
+#input{
     display: flex;
     justify-content: center;
+   
     /* overflow-x: auto; */
     /* align-items: center; */ /*  vertical align  */
 }
+#res{
+    display: flex;
+    justify-content: center;
+}
 
-@media  (max-width: 800px) { /* Adjust the width as per your phone breakpoint */
+@media  (max-width: 1200px) { /* Adjust the width as per your phone breakpoint */
     #input {
         display: flex;
         align-items: center;
         flex-direction: column; /* Change direction to vertical */
     }
-    input[type=number]{
+    .num{
         flex: 1 1 auto;
         width:50px;
         height:50px;
