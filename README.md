@@ -16,4 +16,4 @@ please dont try to crash the programme... if it crash, reload
 
 I dont want to do matrix multiplication math hw
 
-## LINK `https://qinyuehaothomas.github.io/MatirxCalculator/`
+## [LINK](https://qinyuehaothomas.github.io/MatirxCalculator/)
