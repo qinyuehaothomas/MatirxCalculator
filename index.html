@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html  lang="en">
 
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Matrix Multiplication</title>
-        <style>
+        <link rel="stylesheet" href="./style.css">
+
             input[type=number]{
                 width:100px;
                 height:100px;
@@ -32,90 +33,62 @@
                     font-size: 30px;
                 }
             }
-        </style>
+        </style> -->
+
         <script>
-            function Calculate(){
+            function constructM(r,c,id){
+                var obj= document.createElement("table");
+                obj.id=id;
+                obj.dataset.row=r;
+                obj.dataset.col=c;
+
+                for(var i=1;i<=r;i++){
+                    var row=document.createElement("tr");
+                    for(var j=1;j<=c;j++){
+                        // var tmp=document.createElement("td");
+                        var field=document.createElement("input");
+                        field.type="number";
+                        field.value=0;
+                        field.placeholder=0;
+                        field.dataset.r=i;
+                        field.dataset.c=j;
+                        field.id=`${id}_${i}_${j}`;
+                        field.style.backgroundColor="lightgrey";
+                        row.appendChild(field);
+                    }
+                    obj.appendChild(row);
+                }
+                document.getElementById("input").appendChild(obj);
+                obj.addEventListener("input",Minput);
+                obj=obj;
+
+            }
+            function Minput(event){
+                var r=event.target.dataset.r;
+                var c=event.target.dataset.c;
+                var par=document.getElementById(event.target.id.split("_")[0]);
+                for(var i=1;i<=par.dataset.row;i++){
+                    for(var j=1;j<=par.dataset.col;j++){
+                        if(i<=r && j<=c){
+                            document.getElementById(`${par.id}_${i}_${j}`).style.backgroundColor="lightgreen";
+                        }else{
+                            document.getElementById(`${par.id}_${i}_${j}`).style.backgroundColor="lightgrey";
+
+                        }
+                    }
+                }
+            }
+            function Multiply(M1,M2){
                 // todo
-                // display result
-                // 
             }
-            var m1;
-            var m2;
-            var R1=0,C1=0,R2=0,C2=0;//order of matrix
 
-            // maybe write a class for matrix, less repetition more professional
-            
-            function input1(event){
-                var tar=event.target;
-                console.log("Matrix 1" ,R1,C1);
-                R1=tar.dataset.r;
-                C1=tar.dataset.c;
-                for(var i=1;i<=5;i++){
-                    for(var j=1;j<=5;j++){
-                        if(i<=R1 && j<=C1){
-                            console.log
-                            document.getElementById(`1_${i}_${j}`).style.backgroundColor="lightgreen";
-                        }else{
-                            document.getElementById(`1_${i}_${j}`).style.backgroundColor="lightgrey";
-
-                        }
-                    }
-                }
-            }
-            function input2(event){
-                var tar=event.target;
-                R2=tar.dataset.r;
-                C2=tar.dataset.c;
-                console.log("Matrix 2" );
-                for(var i=1;i<=5;i++){
-                    for(var j=1;j<=5;j++){
-                        if(i<=R2 && j<=C2){
-                            document.getElementById(`2_${i}_${j}`).style.backgroundColor="lightgreen";
-                        }else{
-                            document.getElementById(`2_${i}_${j}`).style.backgroundColor="lightgrey";
-
-                        }
-                    }
-                }
-            }
 
             document.addEventListener('DOMContentLoaded', function() {
-                m1=document.getElementById("m1");
-                m2=document.getElementById("m2");
-                for(var i=1;i<=5;i++){
-                    var r=document.createElement("tr");
-                    for(var j=1;j<=5;j++){
-                        var tmp=document.createElement("td");
-                        var field=document.createElement("input");
-                        field.type="number";
-                        field.value=0;
-                        field.placeholder=0;
-                        field.dataset.r=i;
-                        field.dataset.c=j;
-                        field.id=`1_${i}_${j}`;
-                        field.style.backgroundColor="lightgrey";
-                        r.appendChild(field);
-                    }
-                    m1.appendChild(r);
-                }
-                for(var i=1;i<=5;i++){
-                    var r=document.createElement("tr");
-                    for(var j=1;j<=5;j++){
-                        var tmp=document.createElement("td");
-                        var field=document.createElement("input");
-                        field.type="number";
-                        field.value=0;
-                        field.placeholder=0;
-                        field.dataset.r=i;
-                        field.dataset.c=j;
-                        field.id=`2_${i}_${j}`;
-                        field.style.backgroundColor="lightgrey";
-                        r.appendChild(field);
-                    }
-                    m2.appendChild(r);
-                }
-                m1.addEventListener("input",input1);
-                m2.addEventListener("input",input2);
+                constructM(5, 5,"m1");
+                var button=document.createElement("button");
+                button.textContent="Multiply";
+                document.getElementById("input").appendChild(button);
+                constructM(5, 5,"m2");
             });
 
         </script>
@@ -132,13 +105,8 @@
             <p>please dont try to crash the programme... if it crash, reload</p>
         </div>
         <div id="input">
-            <div ><table id="m1">
 
-            </table></div>
-            <button onclick="Calculate()">multiply</button>
-            <div ><table id="m2">
 
-            </table></div>
         </div>
         <div style="display:block">
             <table id="res">
