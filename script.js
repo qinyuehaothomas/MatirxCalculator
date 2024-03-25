@@ -73,7 +73,7 @@ function Multiply(){
             for(var a=0;a<orders['m1'][1];a++){
                 cur+=matrix['m1'][i][a]*matrix["m2"][a][j];
             }
-            obj.textContent=`${cur}`;
+            obj.textContent=`${cur.toFixed(2)}`;
             row.appendChild(obj);
         }
         res_t.appendChild(row);
