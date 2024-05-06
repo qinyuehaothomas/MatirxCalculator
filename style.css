@@ -1,3 +1,11 @@
+@font-face {
+    font-family: pixel_font;
+    src: url(Pixelify_Sans/PixelifySans-VariableFont_wght.ttf);
+  }
+  
+h2{
+    font-family: pixel_font;
+}
 body{
     background-color: black;
     font-family:Courier;
@@ -5,12 +13,12 @@ body{
 }
 .num{
     font-family: inherit;
-    width:100px;
-    height:100px;
+    width:90px;
+    height:90px;
     text-align:center ;
     background-color: grey;
     color: inherit;
-    font-size: 50px;
+    font-size: 300%;
 }
 #input{
     display: flex;
@@ -24,8 +32,17 @@ body{
     justify-content: center;
 }
 
+#Buttons{
+    display: flex;
+    align-items: center;
+    flex-direction: column; /* Change direction to vertical */
+}
+
 button{
-    font:inherit;
+    font-family: pixel_font;
+    font-size:120%;
+    height:33%;
+    width: 100%;
 }
 
 @media  (max-width: 1200px) { /* Adjust the width as per your phone breakpoint */
@@ -36,8 +53,18 @@ button{
     }
     .num{
         flex: 1 1 auto;
-        width:50px;
+        width:60px;
+        height:60px;
+    }
+    #Buttons{
         height:50px;
-        font-size: 30px;
+        width:50%;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+    }
+    button{
+        height:100%;
+        width: 33%;
     }
 }

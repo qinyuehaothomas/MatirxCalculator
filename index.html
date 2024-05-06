@@ -23,13 +23,26 @@
             <h2>Notice</h2>
             <p>This only support up to 5*5 (which is more than sufficent for doing math HW)</p>
             <p>please dont try to crash the programme... if it crash, reload</p>
+            <h2><a href="https://www.wikihow.com/Divide-Matrices">How To Divide Matrixs</a></h4>
+            <h2>Vector Transformation</h4>
+            <p>v'=v*T</p>
+            <p>Where:</p>
+            <ul>v': transformed vector</ul>
+            <ul>v: original vector (column vector n)</ul>
+            <ul>T: transformer vector (square matrix n*n)</ul>
         </div>
         <div id="input">
+            <div id="Buttons">
+                <button onclick="Multiply(matrix['m1'],matrix['m2'])">Multiply</button>
+                <!-- <button onclick="LT()">Linear</br>Transform</button> -->
+                <button onclick="Divide()">Divide</button>
+                <button onclick="Det(matrix['m1'])">Determinant</button>
+                <!-- <button onclick="display(Transform(matrix['m1']))">T</button> -->
+            </div>
 
 
         </div>
         <div  id="res" >
-
         </div>
         <div style="text-align: right; font-size: small; font-style: italic;">
             some part of the programme written using chatgpt actually u can use chatgpt to write the whole programme, but not garentee it works...<br>
