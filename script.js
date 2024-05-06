@@ -43,7 +43,7 @@ function Minput(event){
         for(var j=1;j<=par.dataset.col;j++){
             var obj=document.getElementById(`${par.id}_${i}_${j}`);
             if(i<=r && j<=c){
-                tmp.push(parseInt(obj.value));
+                tmp.push(parseFloat(obj.value));
                 // obj.className="num_fill";
                 obj.style.backgroundColor="lightgreen";
                 obj.style.color="black";
@@ -109,62 +109,63 @@ function Multiply(m1,m2){
     display(resm);
 }
 
-function ScalarMultiply(fac,M){
-    for(var i=0;i<M.length;i++){
-        for(var j=0;j<M[0].length;j++){
-            M[i][j]=M[i][j]*fac;
+function ScalarMultiply(fac,m){
+    for(var i=0;i<m.length;i++){
+        for(var j=0;j<m[0].length;j++){
+            m[i][j]=m[i][j]*fac;
         }
     }
     console.log("Final Step!");
-    console.log(M);
-    return M;
+    console.log(m);
+    return m;
 }
-function Det(M){
-    if(M.length!=M[0].length){
-        display(M,msg="Determinant Need A Square Matrix!");
+function Det(m){
+    if(m.length!=m[0].length){
+        display(m,msg="Determinant Need A Square Matrix!");
         return;
     }
-    var det=0;
-    var x=0;var y=0;
-    for(var a=0;a<M.length;a++){
-        det+=M[a][a];
-        det-=M[M.length-a-1][a];
+    let det=0;
+    let x=0;let y=0;
+    for(var a=0;a<m.length;a++){
+        det+=m[a][a];
+        det-=m[m.length-a-1][a];
     }
-    display(M,msg=`Determinant=${det}`);
+    display(m,msg=`Determinant=${det}`);
 }
 
-function DetMinor(M,i,j){// find the determinant of minor ignoring i,j
+function DetMinor(m,i,j){// find the determinant of minor ignoring i,j
     // more time efficent
-    if(M.length!=M[0].length){
-        display(M,msg="Minor with Determinant Need A Square Matrix!");
+    if(m.length!=m[0].length){
+        display(m,msg="Minor with Determinant Need A Square Matrix!");
         return;
     }
-    var det=0;
+    let det=0;
     var x=0;var y=0;
-    for(var a=0;a<M.length-1;a++){
+    for(var a=0;a<m.length-1;a++){
         if(a>=i){x=a+1;}else{x=a;}
         if(a>=j){y=a+1;}else{y=a;}
-        det+=M[x][y];
-        if(M.length-1>1){
-            if(M.length-a-2>=i){x=M.length-a-1;}else{x=M.length-a-2;}
-            if(M.length-a-2>=j){y=1+a;}else{y=a;}
-            det-=M[x][y];
+        det+=m[x][y];
+        if(m.length-1>1){
+            if(m.length-a-2>=i){x=m.length-a-1;}else{x=m.length-a-2;}
+            if(m.length-a-2>=j){y=1+a;}else{y=a;}
+            det-=m[x][y];
         }
     }
     return det;
 }
 
-function Cofactor(M){
-    if(M.length!=M[0].length){
-        display(M,msg="Cofactor Need A Square Matrix!");
+function Cofactor(m){ //and transposed
+    if(m.length!=m[0].length){
+        display(m,msg="Cofactor Need A Square Matrix!");
         return;
     }
     // var det=Det(M);
     let resm=[];
-    for(var i=0;i<M.length;i++){
+    for(var i=0;i<m.length;i++){
         resm.push([]);
-        for(var j=0;j<M[0].length;j++){
-            resm[i].push(DetMinor(M,i,j)*Math.pow(-1,i+j));
+        for(var j=0;j<m[0].length;j++){
+            if((i+j)%2==0){resm[i].push(DetMinor(m,i,j));}
+            else{resm[i].push(-1*DetMinor(m,j,i));}
         }
     }
     // console.log("Cofactor");
@@ -172,22 +173,22 @@ function Cofactor(M){
     return resm;
 }
 
-function T(M){
-    let M2=[];
-    console.log(isNaN(M[0][0]));
-    for(var i=0;i<M[0].length;i++){
-        let tmp=[];
-        for(var j=0;j<M.length;j++){
-            tmp.push(M[j][i]);
+function Transpose(m) {
+    let transposedMatrix = [];
+    for (let i = 0; i < m[0].length; i++) {
+        let newRow = [];
+        for (let j = 0; j < m.length; j++) {
+            newRow.push(m[j][i]);
         }
-        M2.push(tmp);
+        transposedMatrix.push(newRow);
     }
-    return M2;
+    return transposedMatrix;
 }
 
 function Divide(){
-    var M=matrix['m1'];
-    var b=matrix['m2'];
+    let M=matrix['m1'];
+    let det=Det(M);
+    let b=matrix['m2'];
     if(M.length!=M[0].length){
         display(M,msg="As M1 is not a square </br> No unique solution");
         return;
@@ -200,7 +201,8 @@ function Divide(){
     // inverse A=1/det * adjugate A
     // adjugate A= Transformed Cofactor
     // Cofactor= each i,j: (-1) ^(i+j) * det minor A ignoring i,j
-    M=ScalarMultiply(1/Det(M),T(Cofactor(M)));// inversed
+    M=Cofactor(matrix['m1']);
+    M=ScalarMultiply(1.0/det,M);// inversed
 
     if(M[0].length!=b.length){
         if(b[0].length!=M.length){
