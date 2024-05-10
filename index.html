@@ -33,11 +33,11 @@
         </div>
         <div id="input">
             <div id="Buttons">
-                <button onclick="Multiply(matrix['m1'],matrix['m2'])">Multiply</button>
+                <button onclick="display(Multiply(matrix['m1'],matrix['m2']))">Multiply</button>
                 <!-- <button onclick="LT()">Linear</br>Transform</button> -->
-                <button onclick="Divide()">Divide</button>
-                <button onclick="Det(matrix['m1'])">Determinant</button>
-                <!-- <button onclick="display(Transpose(matrix['m1']))">T</button> -->
+                <button onclick="display(Divide(matrix['m1'],matrix['m2']))">Divide</button>
+                <button onclick="display([],msg=`${Det(matrix['m1'])}`)">Determinant</button>
+                <button onclick="display(Transpose(matrix['m1']))">Transpose</button>
             </div>
 
 
