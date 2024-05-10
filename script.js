@@ -7,6 +7,14 @@
 //  -1^(i+j) * determinant of minor
 // minor = for each i in first row:
 //  determinant of minori,j * elemnt at i
+
+const testm=[
+    [1,1,-1],
+    [2,-3,1],
+    [2,1,2]
+];
+const tm2=[[0],[1],[7]];
+
 var orders={};
 var matrix={};
 function constructM(r,c,id){
@@ -139,13 +147,7 @@ function Transpose(m) {
     return transposedMatrix;
 }
 
-const testm=[
-    [1,1,-1],
-    [2,-3,1],
-    [2,1,2]
-];
 
-const tm2=[[0],[1],[7]];
 function Minor(m,x,y){// 0 indexed
     let resm=[];
     if(i>=m.length || j>=m[0].length){
@@ -223,17 +225,6 @@ function Division(m1,m2){
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("Buttons").before(constructM(5, 5,"m1"));
     document.getElementById("Buttons").after(constructM(5, 5,"m2"));
-    // var button=document.createElement("button");
-    // button.textContent="Multiply";
-    // button.onclick=Multiply;
-    // document.getElementById("input").appendChild(button);
-    // constructM(5, 5,"m2");
-    // var test=[
-    //     [1,0,0,1],
-    //     [0,2,1,2],
-    //     [2,1,0,1],
-    //     [2,0,1,4]  
-    // ];
     
 
 });
