@@ -119,59 +119,6 @@ function ScalarMultiply(fac,m){
     console.log(m);
     return m;
 }
-function Det(m){
-    if(m.length!=m[0].length){
-        display(m,msg="Determinant Need A Square Matrix!");
-        return;
-    }
-    let det=0;
-    let x=0;let y=0;
-    for(var a=0;a<m.length;a++){
-        det+=m[a][a];
-        det-=m[m.length-a-1][a];
-    }
-    display(m,msg=`Determinant=${det}`);
-}
-
-function DetMinor(m,i,j){// find the determinant of minor ignoring i,j
-    // more time efficent
-    if(m.length!=m[0].length){
-        display(m,msg="Minor with Determinant Need A Square Matrix!");
-        return;
-    }
-    let det=0;
-    var x=0;var y=0;
-    for(var a=0;a<m.length-1;a++){
-        if(a>=i){x=a+1;}else{x=a;}
-        if(a>=j){y=a+1;}else{y=a;}
-        det+=m[x][y];
-        if(m.length-1>1){
-            if(m.length-a-2>=i){x=m.length-a-1;}else{x=m.length-a-2;}
-            if(m.length-a-2>=j){y=1+a;}else{y=a;}
-            det-=m[x][y];
-        }
-    }
-    return det;
-}
-
-function Cofactor(m){ //and transposed
-    if(m.length!=m[0].length){
-        display(m,msg="Cofactor Need A Square Matrix!");
-        return;
-    }
-    // var det=Det(M);
-    let resm=[];
-    for(var i=0;i<m.length;i++){
-        resm.push([]);
-        for(var j=0;j<m[0].length;j++){
-            if((i+j)%2==0){resm[i].push(DetMinor(m,i,j));}
-            else{resm[i].push(-1*DetMinor(m,j,i));}
-        }
-    }
-    // console.log("Cofactor");
-    // console.log(resm);
-    return resm;
-}
 
 function Transpose(m) {
     let transposedMatrix = [];
@@ -183,37 +130,6 @@ function Transpose(m) {
         transposedMatrix.push(newRow);
     }
     return transposedMatrix;
-}
-
-function Divide(){
-    let M=matrix['m1'];
-    let det=Det(M);
-    let b=matrix['m2'];
-    if(M.length!=M[0].length){
-        display(M,msg="As M1 is not a square </br> No unique solution");
-        return;
-    }
-    if(Det(M)==0){
-        display(M,msg="As Determinant is 0 </br> No unique solution");
-        return;}
-    
-    // A/B= inverse A*b
-    // inverse A=1/det * adjugate A
-    // adjugate A= Transformed Cofactor
-    // Cofactor= each i,j: (-1) ^(i+j) * det minor A ignoring i,j
-    M=Cofactor(matrix['m1']);
-    M=ScalarMultiply(1.0/det,M);// inversed
-
-    if(M[0].length!=b.length){
-        if(b[0].length!=M.length){
-            display(M,msg="Cannot Be Multiplied!");
-        }else{
-            Multiply(b,M);
-        }
-    }else{
-        Multiply(M,b);
-    }
-    return 0;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
