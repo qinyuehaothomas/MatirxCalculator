@@ -13,31 +13,28 @@
     </head>
     <body> 
         <div>
-            <h2>How to Use</h2>
+            <h1>How to Use</h1>
             <ol>
                 <li>Key in your numbers, they will become green</li>
                 <li>programme will consider the green boxes</li>
                 <li>press multiply</li>
                 <li>result will come out below</li>
+                <li style="font-weight: bold;">All operation are conducted on Left Matrix</li>
+                <li style="font-weight: bold;">Divison is Left Divide By Right</li>
             </ol>
-            <h2>Notice</h2>
+            <h1>Notice</h1>
             <p>This only support up to 5*5 (which is more than sufficent for doing math HW)</p>
             <p>please dont try to crash the programme... if it crash, reload</p>
-            <h2><a href="https://www.wikihow.com/Divide-Matrices">How To Divide Matrixs</a></h4>
-            <h2>Vector Transformation</h4>
-            <p>v'=v*T</p>
-            <p>Where:</p>
-            <ul>v': transformed vector</ul>
-            <ul>v: original vector (column vector n)</ul>
-            <ul>T: transformer vector (square matrix n*n)</ul>
+            <h2><a href="https://www.wikihow.com/Divide-Matrices">How To Divide Matrixs</a></h2>
+            <p>In case yu dont' know, Vector transformation is just a special matir mutiplication.</p>
         </div>
         <div id="input">
             <div id="Buttons">
                 <button onclick="display(Multiply(matrix['m1'],matrix['m2']))">Multiply</button>
                 <!-- <button onclick="LT()">Linear</br>Transform</button> -->
-                <button onclick="display(Divide(matrix['m1'],matrix['m2']))">Divide</button>
+                <button onclick="display(Division(matrix['m2'],matrix['m1']))">Divide</button>
                 <button onclick="display([],msg=`${Det(matrix['m1'])}`)">Determinant</button>
-                <button onclick="display(Transpose(matrix['m1']))">Transpose</button>
+                <!-- <button onclick="display(Transpose(matrix['m1']))">Transpose</button> -->
             </div>
 
 

@@ -131,7 +131,7 @@ function ScalarMultiply(fac,m){
             m[i][j]=m[i][j]*fac;
         }
     }
-    console.log(m,fac);
+    // console.log(m,fac);
     return m;
 }
 
@@ -202,7 +202,11 @@ function Cofactor(m){
     return resm;
 }
 
+
+// IMPORTANT !! the code is m2* inverse m1
 function Division(m1,m2){
+
+
     if(m1[0].length!=m2.length){
         display(resm,"Order does not match!");
         return;

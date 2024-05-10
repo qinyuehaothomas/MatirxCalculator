@@ -3,7 +3,7 @@
     src: url(Pixelify_Sans/PixelifySans-VariableFont_wght.ttf);
   }
   
-h2{
+h1,h2{
     font-family: pixel_font;
 }
 body{
